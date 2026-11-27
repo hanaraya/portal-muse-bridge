@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <WebView
+        android:id="@+id/webview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <!-- Native mic: the WebView has no speech recognition on this device,
+         so this button hears the question and sends it to Talk to Muse. -->
+    <ImageButton
+        android:id="@+id/mic_button"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="16dp"
+        android:background="@drawable/mic_button_bg"
+        android:contentDescription="Talk to Muse"
+        android:src="@android:drawable/ic_btn_speak_now"
+        android:tint="@android:color/white" />
+
+</FrameLayout>
