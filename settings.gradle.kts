@@ -22,3 +22,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "portal-pebble-muse-bridge"
 include(":app")
+include(":hub")
