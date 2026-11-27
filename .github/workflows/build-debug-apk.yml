@@ -61,7 +61,7 @@ jobs:
         run: |
           ./gradlew assembleDebug --no-daemon
           if [ -n "${EXPECTED_APK_SHA256:-}" ]; then
-            APKSIGNER=$(ls "$ANDROID_HOME"/build-tools/*/apksigner | sort -V | tail -n 1)
+           APKSIGNER=$(ls "$ANDROID_HOME"/build-tools/*/apksigner | sort -V | tail -n 1)
             ACTUAL_SHA256=$("$APKSIGNER" verify --print-certs app/build/outputs/apk/debug/app-debug.apk | awk '/SHA-256 digest:/{print tolower($NF); exit}')
             echo "APK cert SHA-256 prefix: ${ACTUAL_SHA256:0:12}"
             if [ "$ACTUAL_SHA256" != "$EXPECTED_APK_SHA256" ]; then
@@ -75,6 +75,14 @@ jobs:
         with:
           name: app-debug
           path: app/build/outputs/apk/debug/app-debug.apk
+          retention-days: 14
+          if-no-files-found: error
+
+      - name: Upload Hub APK artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: hub-debug
+          path: hub/build/outputs/apk/debug/hub-debug.apk
           retention-days: 14
           if-no-files-found: error
 
