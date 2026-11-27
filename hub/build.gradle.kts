@@ -1,10 +1,9 @@
 plugins {
     alias(libs.plugins.android.application)
-    // kotlin-android is already on the classpath via the root's kotlin-compose
-    // plugin (same kotlin-gradle-plugin artifact), so it must be applied
-    // without a version — a versioned request fails with "already on the
-    // classpath with an unknown version".
-    id("org.jetbrains.kotlin.android")
+    // Same pair as the app module (which builds fine): kotlin-compose
+    // provides the Kotlin support here. Applying kotlin-android directly
+    // conflicts — its 'kotlin' extension is already registered.
+    alias(libs.plugins.kotlin.compose)
 }
 
 android {
