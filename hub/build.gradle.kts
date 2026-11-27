@@ -1,1 +1,28 @@
-cGx1Z2lucyB7CiAgICBhbGlhcyhsaWJzLnBsdWdpbnMuYW5kcm9pZC5hcHBsaWNhdGlvbikKICAgIC8vIGtvdGxpbi1hbmRyb2lkIGlzIGFscmVhZHkgb24gdGhlIGNsYXNzcGF0aCB2aWEgdGhlIHJvb3QncyBrb3RsaW4tY29tcG9zZQogICAgLy8gcGx1Z2luIChzYW1lIGtvdGxpbi1ncmFkbGUtcGx1Z2luIGFydGlmYWN0KSwgc28gaXQgbXVzdCBiZSBhcHBsaWVkCiAgICAvLyB3aXRob3V0IGEgdmVyc2lvbiDigJQgYSB2ZXJzaW9uZWQgcmVxdWVzdCBmYWlscyB3aXRoICJhbHJlYWR5IG9uIHRoZQogICAgLy8gY2xhc3NwYXRoIHdpdGggYW4gdW5rbm93biB2ZXJzaW9uIi4KICAgIGlkKCJvcmcuamV0YnJhaW5zLmtvdGxpbi5hbmRyb2lkIikKfQoKYW5kcm9pZCB7CiAgICBuYW1lc3BhY2UgPSAiY29tLnBvcnRhbC5odWIiCiAgICBjb21waWxlU2RrIHsgdmVyc2lvbiA9IHJlbGVhc2UoMzYpIHsgbWlub3JBcGlMZXZlbCA9IDEgfSB9CgogICAgZGVmYXVsdENvbmZpZyB7CiAgICAgICAgYXBwbGljYXRpb25JZCA9ICJjb20ucG9ydGFsLmh1YiIKICAgICAgICBtaW5TZGsgPSAyOAogICAgICAgIHRhcmdldFNkayA9IDI5CiAgICAgICAgdmVyc2lvbkNvZGUgPSAxCiAgICAgICAgdmVyc2lvbk5hbWUgPSAiMS4wLjAiCiAgICB9CgogICAgYnVpbGRUeXBlcyB7CiAgICAgICAgcmVsZWFzZSB7CiAgICAgICAgICAgIGlzTWluaWZ5RW5hYmxlZCA9IGZhbHNlCiAgICAgICAgICAgIHByb2d1YXJkRmlsZXMoZ2V0RGVmYXVsdFByb2d1YXJkRmlsZSgicHJvZ3VhcmQtYW5kcm9pZC1vcHRpbWl6ZS50eHQiKSwgInByb2d1YXJkLXJ1bGVzLnBybyIpCiAgICAgICAgfQogICAgfQp9Cg==
+plugins {
+    alias(libs.plugins.android.application)
+    // kotlin-android is already on the classpath via the root's kotlin-compose
+    // plugin (same kotlin-gradle-plugin artifact), so it must be applied
+    // without a version — a versioned request fails with "already on the
+    // classpath with an unknown version".
+    id("org.jetbrains.kotlin.android")
+}
+
+android {
+    namespace = "com.portal.hub"
+    compileSdk { version = release(36) { minorApiLevel = 1 } }
+
+    defaultConfig {
+        applicationId = "com.portal.hub"
+        minSdk = 28
+        targetSdk = 29
+        versionCode = 1
+        versionName = "1.0.0"
+    }
+
+    buildTypes {
+        release {
+            isMinifyEnabled = false
+            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+        }
+    }
+}
