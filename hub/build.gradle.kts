@@ -25,3 +25,11 @@ android {
         }
     }
 }
+
+dependencies {
+    // The Compose compiler plugin (applied above, like the app module)
+    // requires the Compose Runtime on the compile classpath, even though
+    // this module uses plain Views and no Compose UI.
+    implementation(platform(libs.androidx.compose.bom))
+    implementation("androidx.compose.runtime:runtime")
+}
